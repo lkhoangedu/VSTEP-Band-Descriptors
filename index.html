@@ -12,8 +12,8 @@
     --good:#16834a; --warn:#a86f08; --bad:#c83343; --chip:#edf3ff; --inset:#f3f6fb;
     --radius:12px; --shadow:0 10px 28px rgba(31,45,80,.10);
     --hl-yellow:#fff19a; --hl-green:#bff0cd; --hl-pink:#ffc6d4; --hl-blue:#bcd9ff;
-    --reference-top:55px; --rail-top:62px; --scale-head-top:62px; --criterion-col:112px; --band-col:212px; --scale-scroll-max:62vh; --descriptor-font:14.5px;
-    --scale-grid-width:calc(var(--criterion-col) + (10.3 * var(--band-col))); --scale-scrollbar-gutter:0px;
+    --reference-top:55px; --rail-top:62px; --scale-head-top:62px; --criterion-col:120px; --band-col:212px; --scale-scroll-max:62vh; --descriptor-font:14.5px;
+    --scale-grid-width:calc(var(--criterion-col) + (10.5 * var(--band-col))); --scale-scrollbar-gutter:0px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -28,7 +28,7 @@
   .rchip:focus-visible,.sw:focus-visible,.tab:focus-visible,.switch input:focus-visible+.knob{outline:3px solid rgba(36,89,214,.45);outline-offset:2px}
   .wrap{width:100%;max-width:none;margin:0;padding:8px clamp(10px,1.4vw,22px) 16px}
   header.app{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:7px;flex-wrap:nowrap;margin:0 -2px 6px;padding:5px 2px;background:rgba(248,251,255,.94);border-bottom:1px solid rgba(203,214,230,.72);backdrop-filter:blur(10px)}
-  header.app>.logo+div{flex:0 1 264px;min-width:178px;overflow:hidden}
+  header.app>.logo+div{flex:0 0 auto;min-width:178px;overflow:hidden}
   .logo{flex:0 0 32px;width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-weight:800;font-size:16px;color:#fff;box-shadow:var(--shadow)}
   h1{font-size:clamp(15px,1.35vw,18px);line-height:1.08;margin:0;white-space:nowrap}
   h3{font-size:18px;line-height:1.25}
@@ -61,15 +61,15 @@
   .explorer-main{min-width:0}
   .control-drawer{flex:1 1 auto;min-width:0;margin-left:auto;overflow:visible}
   .control-drawer::-webkit-scrollbar{display:none}
-  .drawer-body{display:flex;align-items:center;justify-content:flex-end;gap:4px;min-width:0;width:100%}
-  .control-drawer label.fld{position:relative;min-width:0;width:auto;font-size:0}
+  .drawer-body{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px;min-width:0;width:100%}
+  .control-drawer label.fld{position:relative;flex:0 0 auto;min-width:0;width:auto;font-size:0}
   .control-drawer label.fld::before{display:none}
   .control-drawer label.fld:first-of-type::before{content:"Scale"}
   .control-drawer label.fld:nth-of-type(2)::before{content:"Criterion"}
   .control-drawer select{width:98px;min-height:30px;padding:5px 6px;font-size:11.5px;border-radius:8px}
-  .control-drawer #section{width:108px}
-  .control-drawer #focusCrit{width:112px}
-  .control-switches{display:flex;align-items:center;gap:4px;margin-left:0;min-width:0}
+  .control-drawer #section{width:120px}
+  .control-drawer #focusCrit{width:172px}
+  .control-switches{display:flex;flex:0 0 auto;align-items:center;gap:4px;margin-left:0;min-width:0}
   .control-drawer .switch{justify-content:flex-start;gap:3px;min-height:30px;font-size:10.5px;white-space:nowrap}
   .switch-text{white-space:nowrap}
   .control-drawer .knob{flex:0 0 27px;width:27px;height:16px}
@@ -84,30 +84,37 @@
   .size-control{flex:0 1 120px;display:flex;align-items:center;gap:4px;min-width:92px;min-height:30px;color:var(--muted);font-size:10.5px;font-weight:800;white-space:nowrap}
   .size-control input{min-width:42px;width:58px;accent-color:var(--brand)}
   .size-control output{min-width:23px;text-align:right;color:#30415f;font-size:10.5px;font-weight:900}
-  @media(max-width:1120px) and (min-width:761px){
-    header.app>.logo+div{flex-basis:205px;min-width:150px}
+  @media(max-width:1260px) and (min-width:761px){
+    header.app>.logo+div{flex-basis:150px;min-width:140px}
+    h1{white-space:normal}
     .sub{display:none}
-    .size-control{flex-basis:72px;min-width:72px;font-size:0}
+    .size-control{flex-basis:78px;min-width:78px;font-size:0}
     .size-control input{width:46px}
-    .size-control output{min-width:21px;font-size:10px}
-    .control-drawer #section{width:96px}
-    .control-drawer #focusCrit{width:100px}
+    .size-control output{min-width:24px;font-size:10px}
+    .control-drawer #section{width:118px}
+    .control-drawer #focusCrit{width:170px}
     .control-drawer .switch{font-size:9.5px}
     .control-drawer .sw{width:16px;height:16px}
     .drawer-body .btn{padding-inline:6px}
     .wide-action-label{display:none}
     .short-action-label{display:inline}
     .tab{font-size:11px;padding-inline:8px}
+    .diff-legend .browse-score{min-width:0}
+    .diff-legend .browse-score-label{display:none}
+    .diff-legend .descriptor-search{flex-basis:180px}
+    .scale-legend.diff-legend{column-gap:8px}
+    .diff-keys .diff-key{gap:4px}
+    .diff-keys .diff-chip{width:14px;height:14px}
   }
   @media(max-width:900px) and (min-width:761px){
     header.app{flex-wrap:wrap}
     header.app>.logo+div{flex:1 1 auto}
     .control-drawer{order:5;flex:1 1 100%;width:100%;margin-left:0}
-    .drawer-body{justify-content:flex-end;flex-wrap:nowrap}
+    .drawer-body{justify-content:flex-end}
   }
   .rubric-reference{position:sticky;top:var(--reference-top);z-index:30;margin:5px 0 5px;padding:6px 9px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
-  .diff-legend{display:flex;gap:8px 12px;flex-wrap:nowrap;align-items:center;margin:0;font-size:11.5px;color:var(--muted)}
-  .diff-keys{display:flex;flex:1 1 auto;gap:6px 10px;align-items:center;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .diff-legend{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center;margin:0;font-size:11.5px;color:var(--muted)}
+  .diff-keys{display:flex;flex:1 1 0;gap:6px 10px;align-items:center;min-width:min-content;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .diff-keys::-webkit-scrollbar{display:none}
   .diff-key{display:inline-flex;align-items:center;gap:6px;font-weight:800}
   .diff-chip{width:18px;height:18px;border-radius:5px;border:1px solid rgba(0,0,0,.08)}
@@ -122,6 +129,7 @@
   .descriptor-search input{min-width:0;flex:1 1 auto;height:100%;border:0;outline:0;padding:4px 7px;font:inherit;font-size:12px;color:var(--ink);background:transparent}
   .descriptor-search input::-webkit-search-cancel-button{cursor:pointer}
   .search-count{flex:0 0 auto;min-width:38px;padding:0 5px;text-align:center;color:var(--muted);font-size:10.5px;font-weight:850;white-space:nowrap}
+  .search-count:empty{display:none}
   .search-nav{display:grid;place-items:center;flex:0 0 28px;height:100%;border:0;border-left:1px solid var(--line);background:#f7f9fd;color:#30415f;font:inherit;font-size:15px;font-weight:900;line-height:1;cursor:pointer}
   .search-nav:hover:not(:disabled),.search-nav:focus-visible{background:var(--chip);color:var(--brand);outline:0}
   .search-nav:disabled{color:#aab4c5;cursor:default}
@@ -142,10 +150,9 @@
   .summary-tabs::-webkit-scrollbar,.summary-grid::-webkit-scrollbar,.diff-legend::-webkit-scrollbar{display:none}
   .summary-tab{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#33445f;border-radius:999px;padding:3px 8px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}
   .summary-tab.active{background:var(--brand);border-color:var(--brand);color:#fff}
-  .summary-toggle{margin-left:auto;border:1px solid var(--line);background:#fff;color:#30415f;border-radius:999px;padding:4px 10px;font:inherit;font-size:11.5px;font-weight:900;line-height:1;white-space:nowrap;cursor:pointer}
-  .summary-toggle:hover,.summary-toggle:focus-visible{background:var(--chip);outline:2px solid rgba(36,89,214,.18);outline-offset:1px}
-  .summary-panel.collapsed .summary-head{margin-bottom:0}
-  .summary-panel.collapsed .summary-tabs,.summary-panel.collapsed .summary-grid{display:none}
+  .summary-toggle,.summary-show{margin-left:auto;border:1px solid var(--line);background:#fff;color:#30415f;border-radius:999px;padding:4px 10px;font:inherit;font-size:11.5px;font-weight:900;line-height:1;white-space:nowrap;cursor:pointer}
+  .summary-show{flex:0 0 auto;min-height:30px;border-radius:8px}
+  .summary-toggle:hover,.summary-toggle:focus-visible,.summary-show:hover,.summary-show:focus-visible{background:var(--chip);outline:2px solid rgba(36,89,214,.18);outline-offset:1px}
   .summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
   .summary-level{border:1px solid var(--lvl-border);background:var(--lvl-bg);border-radius:9px;padding:8px 10px;min-width:0;overflow:visible}
   .summary-level h4{margin:0 0 5px;font-size:12.5px;line-height:1.15;color:var(--lvl-ink);font-weight:900}
@@ -178,7 +185,7 @@
   .scale-head-scroll{overflow-x:auto;overflow-y:hidden;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .scale-head-scroll::-webkit-scrollbar{display:none}
   .scale-head-inner{display:flex;align-items:stretch;width:calc(var(--scale-grid-width) + var(--scale-scrollbar-gutter));min-width:calc(var(--scale-grid-width) + var(--scale-scrollbar-gutter))}
-  .scale-head-grid,.scale-matrix{display:grid;grid-template-columns:var(--criterion-col) repeat(2,minmax(0,.65fr)) repeat(9,minmax(0,1fr));align-items:stretch;width:var(--scale-grid-width);min-width:var(--scale-grid-width)}
+  .scale-head-grid,.scale-matrix{display:grid;grid-template-columns:var(--criterion-col) repeat(2,minmax(0,.75fr)) repeat(9,minmax(0,1fr));align-items:stretch;width:var(--scale-grid-width);min-width:var(--scale-grid-width)}
   .scale-head-grid{flex:0 0 var(--scale-grid-width)}
   .scale-head-gutter{flex:0 0 var(--scale-scrollbar-gutter);min-height:46px;border-bottom:1px solid var(--line);background:var(--panel2);pointer-events:none}
   .scale-scroll{overflow:auto;max-width:100%;max-height:var(--scale-scroll-max);border:1px solid var(--line);border-radius:0 0 12px 12px;background:var(--panel2);box-shadow:var(--shadow);-webkit-overflow-scrolling:touch}
@@ -192,13 +199,14 @@
   .band-b1{--lvl-bg:#fff4cf;--lvl-border:#ddb64a;--lvl-ink:#76510a;--lvl-solid:#a16207;--lvl-shadow:rgba(202,138,4,.34)}
   .band-b2{--lvl-bg:#dff6e8;--lvl-border:#64bf82;--lvl-ink:#17633a;--lvl-solid:#16834a;--lvl-shadow:rgba(22,131,74,.34)}
   .band-c1{--lvl-bg:#dbeafe;--lvl-border:#78a7ef;--lvl-ink:#1d4ed8;--lvl-solid:#2459d6;--lvl-shadow:rgba(36,89,214,.34)}
-  .matrix-crit{position:sticky;left:0;z-index:4;background:#f0f5fd;padding:14px 10px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;min-width:0;max-width:var(--criterion-col);overflow:hidden;overflow-wrap:break-word;word-break:normal;hyphens:auto;font-size:13px;font-weight:900;line-height:1.25;color:#30415f}
+  .matrix-crit{position:sticky;left:0;z-index:4;background:#f0f5fd;padding:14px 10px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;min-width:0;max-width:var(--criterion-col);overflow:hidden;overflow-wrap:break-word;word-break:normal;-webkit-hyphens:auto;hyphens:auto;font-size:13px;font-weight:900;line-height:1.25;color:#30415f}
   .crit-name{min-width:0}
   .crit-score{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;border-radius:7px;background:var(--lvl-solid,var(--brand));color:#fff;font-size:12px;font-weight:950;box-shadow:0 2px 7px var(--lvl-shadow,rgba(36,89,214,.25))}
   .descriptor-cell{--desc-font:var(--descriptor-font);position:relative;background:var(--panel);padding:13px 15px;min-height:118px;transition:transform .16s ease,box-shadow .16s ease,opacity .16s ease,background .16s ease;transform-origin:center}
   .descriptor-cell.has-note ul{padding-top:20px}
   .descriptor-cell ul{margin:0;padding-left:18px}
-  .descriptor-cell li{margin:6px 0;font-size:var(--desc-font);line-height:1.58;transition:font-size .16s ease}
+  .descriptor-cell li{margin:6px 0;font-size:var(--desc-font);line-height:1.58;transition:font-size .16s ease;overflow-wrap:break-word}
+  .descriptor-cell[data-band="0"] li,.descriptor-cell[data-band="1"] li{-webkit-hyphens:auto;hyphens:auto}
   .scale:not(.marking) .descriptor-cell.scoreable{cursor:pointer}
   .descriptor-cell.score-selected{background:var(--lvl-bg);box-shadow:inset 0 0 0 3px var(--lvl-solid);z-index:3}
   .cell-note-badge{position:absolute;top:7px;right:7px;z-index:4;border:1px solid #d19a22;border-radius:999px;background:#fff5c7;color:#76510a;padding:2px 7px;font:inherit;font-size:10px;font-weight:900;line-height:1.35;cursor:help;box-shadow:0 2px 6px rgba(118,81,10,.15)}
@@ -312,27 +320,28 @@
     .new-session{min-height:32px;padding:4px 8px;font-size:11px}
     .calc-grid{grid-template-columns:1fr}
     .rubric-reference{top:var(--reference-top);margin:5px 0 5px;padding:6px 8px}
-    .diff-legend{gap:6px;font-size:11px}
-    .diff-keys{gap:8px}
+    .diff-legend{gap:6px;font-size:11px;flex-wrap:wrap}
+    .diff-keys{display:none}
     .diff-key{white-space:nowrap;flex:0 0 auto}
     .diff-chip{width:16px;height:16px}
-    .descriptor-search{flex-basis:155px}
+    .descriptor-search{flex:1 1 120px;min-width:120px}
     .descriptor-search input{font-size:11.5px}
     .search-count{min-width:33px;padding:0 3px;font-size:10px}
     .search-nav{flex-basis:25px}
-    .browse-score{min-width:0;max-width:140px;height:32px;gap:4px;padding:3px 5px 3px 7px;border-radius:8px}
+    .browse-score{min-width:0;height:32px;gap:4px;padding:3px 5px 3px 7px;border-radius:8px}
     .browse-score-label{display:none}
     .browse-score strong{font-size:13px}
-    .browse-score-level{max-width:72px;font-size:10px}
+    .browse-score-level{max-width:none;font-size:10px}
     .browse-score-reset{flex-basis:19px;width:19px;height:19px}
     .summary-panel{margin-top:0;padding-top:0}
     .summary-head{align-items:center;margin-bottom:3px}
-    .summary-title{max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.75px}
+    .summary-title{white-space:nowrap;font-size:10.75px}
+    .summary-head:has(.summary-tabs) .summary-title{display:none}
     .summary-tabs{margin-bottom:0;scrollbar-width:none}
     .summary-tab{font-size:10.75px;padding:3px 7px}
     .summary-toggle{display:grid;place-items:center;flex:0 0 30px;width:30px;height:28px;margin-left:0;padding:0;font-size:0}
     .summary-toggle::after{content:"−";font-size:18px;line-height:1}
-    .summary-toggle[aria-expanded="false"]::after{content:"+"}
+    .summary-show{min-height:32px;padding:4px 8px;font-size:11px}
     .explore-layout{grid-template-columns:minmax(0,1fr);min-width:0}.railwrap{width:100%;max-width:100%;min-width:0;overflow:hidden;position:sticky;top:var(--rail-top);z-index:20}
     .rail{width:100%;max-width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:flex-start;top:0;border-radius:0 0 12px 12px;padding:5px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     .rail::-webkit-scrollbar{display:none}
@@ -343,7 +352,7 @@
     .summary-level h4{font-size:12px;margin-bottom:4px}
     .summary-level li{font-size:12.5px;line-height:1.32;margin:3px 0}
     .score-ref{font-size:11px;padding:1px 6px}
-    :root{--criterion-col:112px;--band-col:219px}
+    :root{--criterion-col:120px;--band-col:219px}
     .matrix-corner,.matrix-crit{padding:11px 10px}
     .matrix-band{min-height:44px;padding:8px 10px}
     .descriptor-cell{padding:11px 12px;min-height:110px}
@@ -366,7 +375,7 @@
     <div class="logo">V</div>
     <div>
       <h1>VSTEP Rating Scales Explorer</h1>
-      <div class="sub">Interactive Speaking &amp; Writing descriptors &middot; Mark &amp; level calculator</div>
+      <div class="sub">Speaking &amp; Writing descriptors &middot; Mark &amp; level calculator</div>
     </div>
     <div class="control-drawer" id="controlDrawer" aria-label="Rating scale controls">
       <div class="drawer-body">
@@ -598,7 +607,6 @@ function persistAppProgress(){
       section:$("#section")?.value||"Speaking",
       focusCrit:$("#focusCrit")?.value||"__all",
       summaryCrit,
-      summaryCollapsed,
       descriptorFont:Number($("#textSize")?.value||14.5),
       diffToggle:!!$("#diffToggle")?.checked,
       markerToggle:!!$("#markerToggle")?.checked,
@@ -650,7 +658,7 @@ document.body.classList.add("explorer-locked");
 const HL=Object.fromEntries(Object.entries(SAVED_PROGRESS.highlights||{}).filter(([,value])=>typeof value==="string")); // key -> innerHTML (with marks)
 let markColor=["y","g","p","b"].includes(SAVED_PROGRESS.markColor)?SAVED_PROGRESS.markColor:"y";
 let summaryCrit=DATA.speaking_short.includes(SAVED_PROGRESS.summaryCrit)?SAVED_PROGRESS.summaryCrit:DATA.speaking_short[0];
-let summaryCollapsed=!!SAVED_PROGRESS.summaryCollapsed;
+let summaryCollapsed=true; // opens only when a teacher clicks "Show summary"
 let descriptorSearchQuery="";
 let descriptorSearchIndex=-1;
 let descriptorSearchMatches=[];
@@ -804,11 +812,8 @@ $$(".sw").forEach(sw=>sw.classList.toggle("active",sw.dataset.c===markColor));
 $("#swatches").onclick=e=>{const sw=e.target.closest(".sw");if(!sw)return;markColor=sw.dataset.c;$$(".sw").forEach(x=>x.classList.toggle("active",x===sw));queueProgressSave();};
 $("#clearMarks").onclick=()=>{for(const k in HL)delete HL[k];renderScale();queueProgressSave();};
 $("#summaryPanel").onclick=e=>{
-  const toggle=e.target.closest("#summaryToggle");
-  if(toggle){
-    summaryCollapsed=!summaryCollapsed;
-    renderSpeakingSummary();
-    queueProgressSave();
+  if(e.target.closest("#summaryToggle")){
+    toggleSummary();
     return;
   }
   const bandBtn=e.target.closest("[data-summary-band]");
@@ -845,10 +850,18 @@ function summaryItemHTML(item){
   });
   return html+esc(item.slice(pos));
 }
+function toggleSummary(){
+  summaryCollapsed=!summaryCollapsed;
+  renderSpeakingSummary();
+}
 function renderSpeakingSummary(){
   const panel=$("#summaryPanel");
   if(!panel)return;
-  if($("#section").value!=="Speaking"){
+  // hidden summary takes no row: its "Show summary" button lives in the table toolbar
+  const show=$("#section").value==="Speaking"&&!summaryCollapsed;
+  $("#rubricReference").classList.toggle("hide",!show);
+  $("#summaryShow")?.classList.toggle("hide",show);
+  if(!show){
     panel.classList.add("hide");
     panel.innerHTML="";
     requestAnimationFrame(updateStickyOffsets);
@@ -861,12 +874,11 @@ function renderSpeakingSummary(){
     <button class="summary-tab ${c===current?"active":""}" type="button" data-summary-crit="${esc(c)}">${esc(c)}</button>
   `).join("")}</div>`:"";
   panel.classList.remove("hide");
-  panel.classList.toggle("collapsed",summaryCollapsed);
   panel.innerHTML=`
     <div class="summary-head">
       <span class="summary-title">${esc(current)} band summary</span>
       ${tabs}
-      <button class="summary-toggle" id="summaryToggle" type="button" aria-expanded="${!summaryCollapsed}" aria-controls="summaryGrid" aria-label="${summaryCollapsed?"Show summary":"Hide summary"}" title="${summaryCollapsed?"Show summary":"Hide summary"}">${summaryCollapsed?"Show summary":"Hide summary"}</button>
+      <button class="summary-toggle" id="summaryToggle" type="button" aria-expanded="true" aria-controls="summaryGrid" aria-label="Hide summary" title="Hide summary">Hide summary</button>
     </div>
     <div class="summary-grid" id="summaryGrid">
       ${SUMMARY_LEVELS.map(level=>`
@@ -967,7 +979,7 @@ function syncScaleGeometry(){
   const scroller=$("#scale .scale-scroll");
   const headScroller=$("#scale .scale-head-scroll");
   if(!scale||!scroller||!headScroller)return;
-  const minWidth=cssPx("--criterion-col",88)+((BANDS.length-0.7)*cssPx("--band-col",212));
+  const minWidth=cssPx("--criterion-col",88)+((BANDS.length-0.5)*cssPx("--band-col",212));
   const gridWidth=Math.max(minWidth,scroller.clientWidth);
   const gutter=Math.max(0,headScroller.clientWidth-scroller.clientWidth);
   scale.style.setProperty("--scale-grid-width",`${Math.ceil(gridWidth)}px`);
@@ -1248,10 +1260,11 @@ function applyDescriptorSearch({keepIndex=false}={}){
 }
 function searchLegendHTML(hidden){
   return `<div class="diff-keys ${hidden?"hide":""}">${diffLegendHTML()}</div>
+    ${$("#section").value==="Speaking"?`<button class="summary-show ${summaryCollapsed?"":"hide"}" id="summaryShow" type="button" aria-controls="summaryPanel" title="Show the band summary above the table"><span class="wide-action-label">Show summary</span><span class="short-action-label">Summary</span></button>`:""}
     <button class="new-session" id="newSession" type="button" title="Clear all progress and start a new marking session"><span class="wide-action-label">New session</span><span class="short-action-label">New</span></button>
     ${explorerScoreHTML($("#section").value)}
     <div class="descriptor-search" role="search">
-      <input id="descriptorSearch" type="search" placeholder="Search descriptors" aria-label="Search descriptors" autocomplete="off" spellcheck="false">
+      <input id="descriptorSearch" type="search" placeholder="Search" aria-label="Search descriptors" autocomplete="off" spellcheck="false">
       <output class="search-count" id="descriptorSearchCount" aria-live="polite"></output>
       <button class="search-nav" id="descriptorSearchPrev" type="button" title="Previous match" aria-label="Previous match">↑</button>
       <button class="search-nav" id="descriptorSearchNext" type="button" title="Next match" aria-label="Next match">↓</button>
@@ -1344,6 +1357,10 @@ $("#scale").addEventListener("keydown",e=>{
   }
 });
 $("#scale").addEventListener("click",e=>{
+  if(e.target.closest("#summaryShow")){
+    toggleSummary();
+    return;
+  }
   if(e.target.closest("#newSession")){
     startNewMarkingSession();
     return;
